@@ -47,7 +47,6 @@ endif
 
 install:
 	mv $(SLIDES) $(INSTALL_FOLDER)
-	mv $(NOTES) $(INSTALL_FOLDER)
 
 clean:
 	rm -f $(SLIDES)
