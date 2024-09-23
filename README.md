@@ -10,6 +10,14 @@
 | **Escola**      | [Escola Politècnica Superior](https://www.eps.udl.cat) |
 | **Guia docent** | [105012](https://guiadocent.udl.cat/html/2024-25_105012) |
 
+
+## Materials
+
+| Unitat | Diapositives | Apunts | Laboratori | Setmana |
+|--------|--------------|--------|------------|---------|
+| 1      | [Diapositives](diapositives/SO_tema0.pdf) | [Apunts](apunts/SO_tema0.pdf) | [Laboratori 0](https://os-gei-igualada-2425.github.io/laboratoris/lab0/main.html) | 1 |
+| 2      | [Diapositives](diapositives/SO_intro_prog_sistema_1_C) | |[Laboratori 1](https://os-gei-igualada-2425.github.io/laboratoris/lab0/main.html) | 2 |
+
 ## Contingut
 
 - Introducció

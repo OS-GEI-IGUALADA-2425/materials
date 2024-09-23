@@ -27,9 +27,7 @@ fi
 [Fitxer: [scripts/check.sh](https://github.com/OS-GEI-IGUALADA-2425/intro_prog_sistema_1_c/blob/main/scripts/check.sh)]{.bsp}
 
 ::: notes
-
 Per poder desenvolupar en C en un sistema Linux/UNIX necessitem tenir instal·lat el compilador **GCC** i les eines de **binutils**. Aquestes eines són necessàries per a la compilació i enllaçat dels programes. Per comprovar si tenim instal·lat aquestes eines podem executar el script anterior. Si no tenim instal·lat aquestes eines, podem instal·lar-les amb la comanda ```sudo apt-get install build-essential``` en sistemes basats en Debian o ```sudo dnf groupinstall "Development Tools"``` en sistemes basats en RedHat.
-
 :::
 
 ## Navegant a les entranyes del compilador GCC
@@ -48,7 +46,6 @@ Per poder desenvolupar en C en un sistema Linux/UNIX necessitem tenir instal·la
 :::
 
 ::: notes
-
 Els llenguatges de programació compilats són aquells que es tradueixen a codi màquina abans de l'execució. Aquest procés de traducció es realitza per un programa anomenat compilador. El compilador és un programa que tradueix el codi font d'un programa escrit en un llenguatge de programació de nivell alt a codi màquina. En el cas de C, hi ha diferents etapes codi, ensamblador i enllaçador. El compilador GCC és un compilador de codi obert que es pot utilitzar per a la compilació de programes en C, C++, Fortran, Ada, etc. Aquest compilador és molt potent i permet la compilació de programes en diferents plataformes. A més, el compilador GCC és molt flexible i permet la configuració de diferents opcions de compilació.
 :::
 
@@ -511,10 +508,6 @@ extern int errno;
 // C estàndard per comunicar el motiu de fallada d'una funció determinada.
 ```
 
-::: notes
-\blueArrow Per a més informació sobre la directriu extern podeu consultar: [Understanding “extern” keyword in C](https://www.geeksforgeeks.org/understanding-extern-keyword-in-c/).
-:::
-
 ## Llibreria errno
 
 La variable global **errno** és defineix a la biblioteca *errno.h*. Ens serveix per identificar la causa quan hi ha un error.
@@ -611,7 +604,7 @@ clean:
 ```
 
 ::: notes
--O2: This flag is an optimization level for the compiler. It instructs the compiler to optimize the generated machine code for better performance. -O2 is a relatively high optimization level but not the highest. It includes a set of optimizations to improve code speed and size.
+La opció `-O2` és un nivell d'optimització per al compilador. Indica al compilador que optimitzi el codi generat per a un millor rendiment. Inclou un conjunt d'optimitzacions per millorar la velocitat i la grandària del codi. Tenim diferents nivells d'optimització, per exemple `-O0`, `-O1`, `-O2`, `-O3`, `-Os`, `-Og`, `-Ofast`.
 :::
 
 # Gestió Entrada/Sortida
@@ -670,7 +663,7 @@ Als sistemes UNIX tenim 3 descriptors de fitxers assignats de forma implícita:
 :::
 
 ::: notes
-[**Nota**: Fixeu-vos que el fet d'utilitzar dispositius virtuals no soluciona el problema de la independència si el sistema operatiu únicament utilitza els dispositius virtuals i aquests han de conèixer les peculiaritats dels dispositius reals per poder operar-hi. Per tant, necessitem una nova capa per damunt dels drivers que uniformitzi les operacions.]{.alert}
+Fixeu-vos que el fet d'utilitzar dispositius virtuals no soluciona el problema de la independència si el sistema operatiu únicament utilitza els dispositius virtuals i aquests han de conèixer les peculiaritats dels dispositius reals per poder operar-hi. Per tant, necessitem una nova capa per damunt dels drivers que uniformitzi les operacions.
 :::
 
 ## Descriptors de fitxer
@@ -745,10 +738,14 @@ int creat (const char *path,
 :::
 
 ::: notes
-// man -s2 fcntl
-// man -s2 stat
-// man -s2 open
-// man creat
+
+Podeu consultar la pàgina de manual de les crides a sistema per obtenir més informació:
+
+* `man -s2 fcntl`
+* `man -s2 stat`
+* `man -s2 open`
+* `man creat`
+
 :::
 
 ## Tancant fitxers
@@ -842,7 +839,7 @@ ssize_t write
 :::
 ::: {.column width="70%"}
 
-### Notes
+### Annotacions
 
 \blueArrow Intenta llegir/escriure fins a **nbytes** bytes del fitxer especificat per **fd** i emmagatzemar-los a l'àrea de memòria que comença a **buf**.
 Paràmetres:
@@ -881,13 +878,7 @@ int main(int argc, char* argv[]) {
 [Fitxer: [sources/llegir_fitxer.c](https://github.com/OS-GEI-IGUALADA-2425/intro_prog_sistema_1_c/blob/main/sources/llegir_fitxer.c)]{.bsp}
 
 ::: notes
-
-\blueArrow Per generar un fitxer amb dades aleatòries:
-
-```sh
-head -c 1024 </dev/urandom > my_file
-```
-
+Per generar un fitxer amb dades aleatòries: `head -c 1024 </dev/urandom > my_file`.
 :::
 
 ## Escrivint fitxers
@@ -1070,11 +1061,6 @@ ptr1 = &n;
 (*ptr1)++        //Modifiquem el valor de la variable a la que apunta
 ptr1++           //Modifiquem l'adreça de memòria on apunta
 ```
-
-::: notes
-(*ptr1)++ //Modifiquem el valor de la variable a la que apunta
-(*ptr1)--
-:::
 
 ## Pas de paràmetres (valor)
 
