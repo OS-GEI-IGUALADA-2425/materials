@@ -24,6 +24,8 @@ if [ $? != 0 ]; then
 fi
 ```
 
+[Fitxer: [scripts/check.sh](https://github.com/OS-GEI-IGUALADA-2425/intro_prog_sistema_1_c/blob/main/scripts/check.sh)]{.bsp}
+
 ::: notes
 
 Per poder desenvolupar en C en un sistema Linux/UNIX necessitem tenir instal·lat el compilador **GCC** i les eines de **binutils**. Aquestes eines són necessàries per a la compilació i enllaçat dels programes. Per comprovar si tenim instal·lat aquestes eines podem executar el script anterior. Si no tenim instal·lat aquestes eines, podem instal·lar-les amb la comanda ```sudo apt-get install build-essential``` en sistemes basats en Debian o ```sudo dnf groupinstall "Development Tools"``` en sistemes basats en RedHat.
@@ -98,6 +100,8 @@ main(){
     return 0;
 }
 ```
+
+[Fitxer: [sources/ex1.c](https://github.com/OS-GEI-IGUALADA-2425/intro_prog_sistema_1_c/blob/main/sources/ex1.c)]{.bsp}
 
 :::
 ::: {.column width="50%"}
@@ -199,16 +203,13 @@ int main (void)
 }
 ```
 
+[Fitxer: [sources/arrel.c](https://github.com/OS-GEI-IGUALADA-2425/intro_prog_sistema_1_c/blob/main/sources/arrel.c)]{.bsp}
+
 \onslide<2->
 
 ```bash
 // Complilació amb ruta global a la llibreria
 gcc -Wall SO_usingLibraries.c /usr/lib/x86_64-linux-gnu/libm.a -o calc
-```
-
-\onslide<3->
-
-```bash
 // Compilació utilitzant la forma abreujada
 gcc -Wall SO_usingLibraries.c -lm -o calc
 ```
@@ -412,6 +413,8 @@ main(int argc, char **argv) {
 }
 ```
 
+[Fitxer: [sources/check_args.c](https://github.com/OS-GEI-IGUALADA-2425/intro_prog_sistema_1_c/blob/main/sources/check_args.c)]{.bsp}
+
 :::
 ::: {.column width="55%"}
 
@@ -520,6 +523,8 @@ La variable global **errno** és defineix a la biblioteca *errno.h*. Ens serveix
 > * Per més informació: ```$ man errno```
 > * Es pot veure un missatge d'error descriptiu identificat per **errno** utilitzant la funció ```perror``` de la biblioteca ```<stdio.h>```. Funció: ```void perror(const char*);```  Aquesta funció primer  mostra el missatge i després l'error. ```#include <stdio.h>```.
 
+[Fitxer: [sources/errno_example.c](https://github.com/OS-GEI-IGUALADA-2425/intro_prog_sistema_1_c/blob/main/sources/errno_example.c)]{.bsp}
+
 ## Activitat: `echo` amb c
 
 \onslide<2->
@@ -543,6 +548,8 @@ int main(int argc, char *argv[]) {
 
 ```
 
+[Fitxer: [sources/echo.c](https://github.com/OS-GEI-IGUALADA-2425/intro_prog_sistema_1_c/blob/main/sources/echo.c)]{.bsp}
+
 ## Activitat: `cd` amb c
 
 \onslide<2->
@@ -556,15 +563,15 @@ int main(int argc, char *argv[]) {
         fprintf(stderr, "Usage: %s <directory>\n", argv[0]);
         return 1;
     }
-
     if (chdir(argv[1]) == -1) {
         perror("chdir");
         return 1;  
     }
-
     return 0;  
 }
 ```
+
+[Fitxer: [sources/cd.c](https://github.com/OS-GEI-IGUALADA-2425/intro_prog_sistema_1_c/blob/main/sources/cd.c)]{.bsp}
 
 # Makefile
 
@@ -758,12 +765,10 @@ int close(int fd);
 ## Visualitzant els descriptors de fitxers (I)
 
 ```c
-int 
-main() {
+int main() {
  
  int fd1, fd2, fd3;
  FILE *f;
-
  printf("STDIN_FILENO: %d\n", STDIN_FILENO); 
  printf("stdout: %d\n", fileno(stdout)); 
  printf("STDERR_FILENO: %d\n", STDERR_FILENO);
@@ -775,6 +780,8 @@ main() {
   printf("fd1: %d\n", fd1);
  }
 ```
+
+[Fitxer: [sources/descriptors.c](https://github.com/OS-GEI-IGUALADA-2425/intro_prog_sistema_1_c/blob/main/sources/descriptors.c)]{.bsp}
 
 ## Visualitzant els descriptors de fitxers (II)
 
@@ -871,6 +878,8 @@ int main(int argc, char* argv[]) {
 }
 ```
 
+[Fitxer: [sources/llegir_fitxer.c](https://github.com/OS-GEI-IGUALADA-2425/intro_prog_sistema_1_c/blob/main/sources/llegir_fitxer.c)]{.bsp}
+
 ::: notes
 
 \blueArrow Per generar un fitxer amb dades aleatòries:
@@ -890,7 +899,7 @@ int main(int argc, char* argv[]) {
 
   int file = open("new_file", O_CREAT|O_WRONLY, 0644);
 
-  if(file == -1) { // Check errors
+  if(file == -1) { 
     perror("Error when opening file");
     exit(1);
   }
@@ -901,6 +910,8 @@ int main(int argc, char* argv[]) {
   exit(0);
 }
 ```
+
+[Fitxer: [sources/escriure_fitxer.c](https://github.com/OS-GEI-IGUALADA-2425/intro_prog_sistema_1_c/blob/main/sources/escriure_fitxer.c)]{.bsp}
 
 ## Llegint/Escrivint en llocs específics
 
@@ -943,10 +954,6 @@ int main(int argc, char* argv[]) {
   int b_read;
 
   int file = open ("my_file", O_RDONLY); 
-  if(file == -1) {
-    perror("Error while opening file");
-    exit(1);
-  }
 
   lseek(file, 46, SEEK_SET);
   b_read = read(file, string, 10); // Read 10 bytes
@@ -954,11 +961,13 @@ int main(int argc, char* argv[]) {
 
   string[10] = 0;
   printf("%d B have been read. The obtained string is: %s\n", 
-   b_read, string);
+  b_read, string);
 
   return 0;
 }
 ```
+
+[Fitxer: [sources/llegir_fitxer2.c](https://github.com/OS-GEI-IGUALADA-2425/intro_prog_sistema_1_c/blob/main/sources/llegir_fitxer2.c)]{.bsp}
 
 ## Escrivint en llocs específics
 
@@ -968,9 +977,8 @@ char buf2[] = "ABCDEFGHIJ";
 
 int main() {
   int fd;
-
   if((fd = creat("new_file2", 0644)) < 0) {
- perror("new_file2"); exit(-1);
+    perror("new_file2"); exit(-1);
   }
 
   if(write(fd, buf1, 10) != 10)       perror("buf1");    // offset == 10
@@ -980,6 +988,8 @@ int main() {
   return 0;
 }
 ```
+
+[Fitxer: [sources/escriure_fitxer2.c](https://github.com/OS-GEI-IGUALADA-2425/intro_prog_sistema_1_c/blob/main/sources/escriure_fitxer2.c)]{.bsp}
 
 # Punters
 
@@ -1043,7 +1053,7 @@ char *pt3= &a;
 :::
 :::
 
-[Fitxer: src/SO_pointers02.c]{.bsp}
+[Fitxer: [sources/punters_diapos.c](https://github.com/OS-GEI-IGUALADA-2425/intro_prog_sistema_1_c/blob/main/sources/punters_diapos.c)]{.bsp}
 
 ## Operacions amb punters
 
@@ -1087,6 +1097,8 @@ int main() {
 }
 ```
 
+[Fitxer: [sources/pas_valor.c](https://github.com/OS-GEI-IGUALADA-2425/intro_prog_sistema_1_c/blob/main/sources/pas_valor.c)]{.bsp}
+
 ## Pas de paràmetres (referència)
 
 ```c
@@ -1104,6 +1116,8 @@ int main() {
     return 0;
 }
 ```
+
+[Fitxer: [sources/pas_referencia.c](https://github.com/OS-GEI-IGUALADA-2425/intro_prog_sistema_1_c/blob/main/sources/pas_referencia.c)]{.bsp}
 
 ## Exemple: Ordenació d'un array
 
@@ -1172,6 +1186,8 @@ int main() {
 
 :::
 :::
+
+[Fitxer: [sources/zones_mem.c](https://github.com/OS-GEI-IGUALADA-2425/intro_prog_sistema_1_c/blob/main/sources/zones_mem.c)]{.bsp}
 
 ## Variables `static`
 
@@ -1246,9 +1262,7 @@ Un **stack overflow** es produeix quan la pila del programa supera la seva capac
 ```{.c size="footnotesize"}
 int main() {
     int* nums = NULL;  
-    int n = 0;  
-    int max_elements = 10; 
-    int num;
+    int n = 0, max_elements = 10, num;
 
     nums = (int*)malloc(max_elements * sizeof(int));
     if (nums == NULL) {
@@ -1262,6 +1276,8 @@ int main() {
     return 0;
 }
 ```
+
+[Fitxer: [sources/pas_referencia.c](https://github.com/OS-GEI-IGUALADA-2425/intro_prog_sistema_1_c/blob/main/sources/ordenar.c)]{.bsp}
 
 ## Exemple: Ordenar amb memòria dinàmica (II)
 
