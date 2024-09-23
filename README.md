@@ -16,7 +16,7 @@
 | Unitat | Diapositives | Apunts | Laboratori | Setmana |
 |--------|--------------|--------|------------|---------|
 | 1      | [Diapositives](diapositives/SO_tema0.pdf) | [Apunts](apunts/SO_tema0.pdf) | [Laboratori 0](https://os-gei-igualada-2425.github.io/laboratoris/lab0/main.html) | 1 |
-| 2      | [Diapositives](diapositives/SO_intro_prog_sistema_1_C.pdf) | |[Laboratori 1](https://os-gei-igualada-2425.github.io/laboratoris/lab0/main.html) | 2 |
+| 2      | [Diapositives](diapositives/SO_intro_prog_sistema_1_C.pdf) | |[Laboratori 1](https://os-gei-igualada-2425.github.io/laboratoris/lab1/main.html) | 2 |
 
 ## Contingut
 
