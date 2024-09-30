@@ -261,7 +261,7 @@ Per a més informació podeu consultar el següent enllaç: [Excepcions](https:/
 > * Restableix un processador.
 > * Fer operacions d'E/S.
 
-## Estuctures dels sistemes operatius
+# Estuctures dels sistemes operatius
 
 ## Quina és la problematica?
 
@@ -334,7 +334,7 @@ Quan es va escriure DOS originalment, els seus desenvolupadors no tenien ni idea
 Els serveis d'usuari i serveis del kernel s'implementen sota el mateix espai d'adreces.
 
 ::: center
-![Esquema d'un kernel monolític](../../figs/teoria/unitat1/kernel-unix2.png)
+![Esquema d'un kernel monolític](../../figs/teoria/unitat1/kernel-monolitic.png)
 :::
 
 :::
@@ -378,22 +378,13 @@ Els serveis d'usuari i serveis del kernel s'implementen sota el mateix espai d'a
 :::
 
 ::: notes
-Per obtenir un rendiment i una implementació eficients, un sistema operatiu s’ha de particionar en subsistemes separats, cadascun amb tasques, entrades, sortides i característiques de rendiment acuradament definides.
 
-### Pros
+Un exemple és UNIX, aquest sistema operatiu, creat per Dennis Ritchie i Ken Thompson als anys 70, va adoptar una
+arquitectura en capes més simple que Multics. Aquestes capes són: Hardware, Kernel, Shell i Aplicacions.
+Un exemple és: NetBSD.
 
-* Amagar informació a cada capa.
-* Dependència en capes.
+Permet que cada anell tingui un conjunt de funcions i responsabilitats clarament definides, i que cada anell pugui comunicar-se amb els anells adjaçents.
 
-### Cons
-
-* Ineficiència.
-* Inflexible.
-
-Aquest enfocament permet que cada capa es pugui desenvolupar i depurar de manera independent, amb el supòsit que totes les capes inferiors ja s’han depurat i que es confia en la prestació de serveis adequats.
-El problema és decidir quin ordre col·locar les capes.
-
-Els enfocaments per capes també poden ser menys eficients, ja que una sol·licitud de servei des d'una capa superior ha de filtrar-se per totes les capes inferiors abans d'arribar a la HW, possiblement amb un processament significatiu a cada pas.
 :::
 
 ## Estructura Microkernel
@@ -426,11 +417,13 @@ Els enfocaments per capes també poden ser menys eficients, ja que una sol·lici
 :::
 
 :::notes
-Aquesta estructura el sistema operatiu elimina totes les parts no essencials del nucli i les implementa com a programes de nivell de sistema i usuari.
 
-En general, proporcionen una gestió mínima de processos i memòria.
+El sistema operatiu MacOS, desenvolupat per Apple, va aprofitar l’estabilitat i seguretat del nucli
+Mach com a base per al seu sistema operatiu. En aquest sistema, serveis com la gestió de memòria, la gestió
+de fitxers i la xarxa es van traslladar fora del nucli, a servidors externs, millorant la estabilitat, fiabilitat i
+modularitat del sistema.
 
-La comunicació entre components del sistema operatiu es proporciona mitjançant la transmissió de missatges.
+Sistemes en temps real com QNX, o dispotius encastats poden utilitzar aquesta arquitectura.
 :::
 
 ## Comparativa Microkernel vs Monolític
