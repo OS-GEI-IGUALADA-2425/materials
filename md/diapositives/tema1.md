@@ -509,6 +509,35 @@ La comunitat té un o més mantenidors que accepten *patches* de desenvolupadors
 * David Miller (treball en xarxa): [git](git.kernel.org/pub/scm/linux/kernel/git/davem/net.git/)
 :::
 
+## Màquines Virtuals
+
+![](../../figs/teoria/unitat1/theory/mvs.png){width=80%}
+
+::: center
+JVM (Java Virtual Machine): Ens permet executar codi Java en qualsevol plataforma.
+:::
+
+## Contenidors
+
+![](../../figs/teoria/unitat1/containers.png){width=80%}
+
+## Exokernels
+
+Arquitectura **minimalista** que intenta proporcionar als programes un control directe sobre el maquinari. A diferència dels microkernels o dels kernels monolítics, els exokernels no intenten abstraure gairebé res del maquinari, sinó que ofereixen primitives de baix nivell per accedir directament als recursos de la màquina. La gestió de recursos, com la memòria i la CPU, queda delegada als programes d’usuari o a les seves llibreries.
+
+Imaginem que particionem una màquina en diferents màquines virtuals amb un subconjunt de recursos. Cada màquina virtual té un exokernel que li permet accedir directament als recursos de la màquina física. La idea és reduir el overhead del sistema separant la multiprogramació de les funcions del sistema operatiu en l’espai usuari.
+
+::: notes
+En aquest cas no estem movent instruccions de mode kernel a mode usuari, sinó que estem movent la gestió de recursos del sistema operatiu a l’espai d’usuari. De fet, els exokernels són tan petits que poden ser incrustats en aplicacions específiques. Per exemple, un exokernel podria ser incrustat en una aplicació de control de trànsit per coordinar els semàfors d’una ciutat.
+:::
+
+## Unikernels
+
+Els unikernels són una forma de sistema operatiu que empaqueta tot el codi necessari per a una aplicació en un sol paquet. Aquest paquet s’executa directament sobre una màquina virtual o un hipervisor, sense cap sistema operatiu subministrat. Això permet als unikernels ser molt petits i molt eficients, ja que no hi ha cap codi innecessari.
+
+S'inspiren en els contenidors, però en lloc d’executar-se en un sistema operatiu complet, s’executen directament sobre el hardware. Això els fa molt més petits i molt més eficients que els contenidors, ja que no hi ha cap sistema operatiu subministrat.
+
+S'inspiren en els exokernels, però en lloc de proporcionar un conjunt de primitives de baix nivell per accedir directament als recursos de la màquina, proporcionen un conjunt de primitives de baix nivell per accedir directament als recursos de l’aplicació.
 
 ## Això és tot per avui
 
