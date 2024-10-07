@@ -34,7 +34,7 @@ Heu de crear primer 3 processos en una terminal executant 3 vegades ( ```sleep 1
 
 L'opció **-e** indica a l'ordre que mostri **tots els processos del sistema**. Sense aquesta opció, l'ordre només mostra els processos de l'usuari a la sessió actual.
 
-Aquests processos tenen PID *1054, 1055 i 1056*. [*També observeu l'ordre ps al final de la llista. Això es deu al fet que l'ordre en si també és un procés.*]{.alert}
+Aquests processos tenen PID *1053, 1054 i 1054*. [*També observeu l'ordre ps al final de la llista. Això es deu al fet que l'ordre en si també és un procés.*]{.alert}
 
 :::
 ::: {.column width="45%"}
@@ -76,7 +76,7 @@ Comanda *ps* (II)
 
 > * La columna *CMD* identifica el nom del procés en execució, com ara *sleep*.
 > La primera columna indica l’identificador de procés (**PID**) assignat al procés pel sistema operatiu.
-> * La segona columna mostra el terminal associat a un procés o *"?"* si el procés no s’associa a cap terminal.
+> * La segona columna mostra el terminal associat a un procés o *?* si el procés no s’associa a cap terminal.
 > * Finalment, la tercera columna mostra el *temps de la CPU* del procés.
 
 :::
