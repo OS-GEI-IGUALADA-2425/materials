@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<drawio>
+  <diagram name="Communication Diagram">
+    <style>
+      <default style="group" value="1"/>
+      <default style="rounded=0;whiteSpace=wrap;html=1;" vertex="1"/>
+      <default style="edgeLabel;rounded=0;whiteSpace=wrap;html=1;" edge="1"/>
+      <default style="curved=0;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;exitPerimeter=0;endArrow=classic;html=1;" edge="1"/>
+      <default style="shadow=0;dashed=0;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1"/>
+      <default style="html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1"/>
+      <default style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1"/>
+      <default style="rounded=0;whiteSpace=wrap;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" vertex="1"/>
+      <default style="shadow=0;whiteSpace=wrap;html=1;" vertex="1"/>
+      <default style="rounded=0;whiteSpace=wrap;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" vertex="1"/>
+      <default style="shape=swimlane;rounded=0;whiteSpace=wrap;html=1;" vertex="1"/>
+      <default style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;whiteSpace=wrap;html=1;" edge="1"/>
+      <default style="rounded=0;whiteSpace=wrap;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" vertex="1"/>
+      <default style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;whiteSpace=wrap;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1"/>
+      <default style="rounded=0;whiteSpace=wrap;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" vertex="1"/>
+    </style>
+    <layer>
+      <node name="Espai d'Usuari" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" connectable="0" vertexMoveable="0" vertexMovable="0" resizable="0" x="30" y="30" width="150" height="90"/>
+      <node name="Process Pare" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" connectable="0" vertexMoveable="0" vertexMovable="0" resizable="0" x="30" y="170" width="150" height="90"/>
+      <node name="Process Fill" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" connectable="0" vertexMoveable="0" vertexMovable="0" resizable="0" x="230" y="170" width="150" height="90"/>
+      <node name="Pipe FD[1] (escriptor)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" connectable="0" vertexMoveable="0" vertexMovable="0" resizable="0" x="30" y="310" width="150" height="90"/>
+      <node name="Pipe FD[0] (lector)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" connectable="0" vertexMoveable="0" vertexMovable="0" resizable="0" x="230" y="310" width="150" height="90"/>
+      <node name="Kernel Space" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" connectable="0" vertexMoveable="0" vertexMovable="0" resizable="0" x="30" y="450" width="150" height="90"/>
+    </layer>
+    <connect>
+      <relation node="Process Pare" connector="Pipe FD[1] (escriptor)" relation="0"/>
+      <relation node="Process Fill" connector="Pipe FD[0] (lector)" relation="0"/>
+      <relation node="Pipe FD[1] (escriptor)" connector="Pipe FD[0] (lector)" relation="2" label="Flux d'informació"/>
+    </connect>
+  </diagram>
+</drawio>
+

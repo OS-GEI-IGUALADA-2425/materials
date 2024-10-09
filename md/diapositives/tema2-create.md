@@ -28,7 +28,7 @@ El procés **A(pare)** i [**A(fill)**]{.alert} són una *còpia exacta* en el mo
 :::
 ::: {.column width="50%"}
 
-![](../../figs/teoria/unitat2/create/process-creation01.png){width="90%"}
+![](../../figs/teoria/unitat2/create/process-creation01.png){width="80%"}
 
 :::
 :::
@@ -59,22 +59,16 @@ switch (childPid = fork()) {
    /* fork() failed */  
    /* Handle error */ 
    case 0:  
-   /* Child of successful fork() 
-      comes here */  
-   /* Perform actions specific 
-      to child */ 
+   /* Child */  
+   /* Perform actions */ 
    default: 
-   /* Parent comes here after 
-    successful fork() */ 
-   /* Perform actions specific 
-      to parent */ 
+   /* Parent */ 
+   /* Perform actions */ 
 }
 ```
+
 :::
 :::
-
-
-
 
 Com és creen els processos?
 ----------------------------
@@ -307,7 +301,6 @@ El procés **A (Pare)** suspèn la seva execució fins la finalització del proc
 :::
 :::
 
-
 Exemple: Sincronització de processos 
 -------------------------------------
 
@@ -432,7 +425,6 @@ La crida *wait()* és equivalent a [**waitpid(-1, &status,0)**]{.alert};
 :::
 :::
 
-
 Macros **wait/waitpid**
 ------------------------
 
@@ -441,18 +433,18 @@ Si *status* no és NULL, **wait() i waitpid()** emmagatzemen informació d'estat
 ::: columns
 ::: {.column width="40%"}
 
-> * **WIFEXITED(status))**: Indicador si el fill acaba de forma normal.
-> * **WEXITSTATUS(status))**: Retorna l'estat de sortida del fill. 
-> * **WIFSIGNALED(status))**: Indicador si el fill ha estat acabat per un senyal. 
-> * **WIFSIGNALED(status))**: Retorna el número del senyal que ha provocat la finalització del procés fill.
+> * **WIFEXITED(status)**: Indicador si el fill acaba de forma normal.
+> * **WEXITSTATUS(status)**: Retorna l'estat de sortida del fill. 
+> * **WIFSIGNALED(status)**: Indicador si el fill ha estat acabat per un senyal. 
+> * **WIFSIGNALED(status)**: Retorna el número del senyal que ha provocat la finalització del procés fill.
 
 :::
 ::: {.column width="50%"}
 
-> * **WCOREDUMP(status))**: Indicador si el fill acaba per un *core dumped* al nucli. (no esta disponible a totes les versions de UNIX)
-> * **WIFSTOPPED(status))**: Indicador de suspensió del fill requereix l'opció (*WUNTRACED*). 
-> * **WSTOPSIG(status))**: Retorna el número de senyal que ha aturat el fill.
-> * **WIFCONTINUAT(status))**: Indicador que el fill torna a arrancar amb *SIGCONT*. (disponible al kernel de linux superior a 2.6).
+> * **WCOREDUMP(status)**: Indicador si el fill acaba per un *core dumped* al nucli. (no esta disponible a totes les versions de UNIX)
+> * **WIFSTOPPED(status)**: Indicador de suspensió del fill requereix l'opció (*WUNTRACED*). 
+> * **WSTOPSIG(status)**: Retorna el número de senyal que ha aturat el fill.
+> * **WIFCONTINUAT(status)**: Indicador que el fill torna a arrancar amb *SIGCONT*. (disponible al kernel de linux superior a 2.6).
 
 :::
 :::
@@ -462,9 +454,7 @@ Exemple: waitpid.c (signals)
 -----------------
 
 ::: columns
-::: {.column width="60%"}
-
-
+::: {.column width="55%"}
 
 ```{.c size="tiny"}
 int main(int argc, char *argv[])
@@ -475,12 +465,12 @@ pid = fork();
 if (pid == -1) {
     perror("fork"); exit(EXIT_FAILURE);
 }
-if (pid == 0) {            /* Code executed by child */
+if (pid == 0) {           
     printf("Child PID is %d\n", getpid());
     if (argc == 1)
-        pause();                    /* Wait for signals */
+        pause();                   
     exit(atoi(argv[1]));
-} else {                    /* Code executed by parent */
+} else {                    
     do {
         w = waitpid(pid, &status, WUNTRACED | WCONTINUED);
         if (w == -1) {
@@ -492,18 +482,16 @@ if (pid == 0) {            /* Code executed by child */
             printf("killed by signal, [%d] -> %d\n", pid, WTERMSIG(status));
         } else if (WIFSTOPPED(status)) {
             printf("stopped by signal [%d] -> %d\n", pid, WSTOPSIG(status));
-        } else if (WIFCONTINUED(status)) {
-            printf("continued\n");
-        }
+        } else if (WIFCONTINUED(status)) { printf("continued\n"); }
     } while (!WIFEXITED(status) && !WIFSIGNALED(status));
     exit(EXIT_SUCCESS);
 }
 ```
 
 :::
-::: {.column width="40%"}
+::: {.column width="45%"}
 
-![](../../figs/teoria/unitat2/create/waitpid-signals.png){width="90%"}
+![](../../figs/teoria/unitat2/create/waitpid-signals.png)
 
 :::
 :::
@@ -574,7 +562,7 @@ No es crea cap procés \blueArrow Destrueix el procés actual [**A (fill)**]{.al
 :::
 ::: {.column width="45%"}
 
-![](../../figs/teoria/unitat2/create/exec.png){width="90%"}
+![](../../figs/teoria/unitat2/create/exec.png){width="80%"}
 
 :::
 :::
@@ -735,14 +723,12 @@ Exemple: Factoria de zombies
 
 ```c
 int main() {
-pid_t pid;
-int i;
+pid_t pid; int i;
 for (i = 0; ; i++) {
     pid = fork();
     if (pid > 0) {
         printf("Zombie #%d born:\n",
-         i + 1);
-        sleep(1);
+         i + 1); sleep(1);
     } else {
         printf("*drool* Boooo! 
            Arrgghh! *slobber*\n");
